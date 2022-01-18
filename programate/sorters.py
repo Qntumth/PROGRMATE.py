@@ -64,35 +64,23 @@ def sorter_v3(lista: list, start = 1, end = None):
     return lista
 
 
-def sorter_v4(lista: list, inicio: int = 0, final: int = None):
-    if final == None:
-        largo = len(lista)
-        pivote = lista[largo-1]
-        contador = inicio-1
-        for i in range(inicio, largo):
-            if lista[i] <= pivote:
-                contador = contador + 1
-                if contador >= 0:
-                    var = lista[contador]
-                    lista[contador] = lista[i]
-                    lista[i] = var
-                    piv = contador
-    return sorter_v4(lista[inicio:piv-1], inicio+1, piv + 1) + sorter_v4(lista[piv-1:], contador + 1, largo-inicio-2)
-    if inicio == final:
-        return lista
-    elif inicio > final:
-        return lista
 
 def inside(lista: list, beginin: int, end: int):
     i = beginin - 1
     pivote = lista[end - 1]
     for j in range(beginin,end):
-        if lista[i] <= pivote:
+        if lista[j] <= pivote:
             i = i + 1
             lista[i], lista[j] = lista[j], lista[i]
-    return lista
+    return i
 
-def sorter_v4(lista: list, ini)
+
+def sorter_v4(lista: list, inicio: int, fin: int):
+     if fin > inicio:
+         p = inside(lista, inicio, fin)
+         sorter_v4(lista, inicio, p)
+         sorter_v4(lista, p+1, fin)
+
 
 def sorter_v4a(lista: list, final):
     p = -1
@@ -105,25 +93,6 @@ def sorter_v4a(lista: list, final):
             piv = p
         return sorter_v4a(lista[0: piv+1], piv-1)+sorter_v4a(lista[piv+1:], l-2-piv)
     if final <= 0:
-        return lista
-
-
-
-
-def metodo_sorter_v4(lista: list, final):
-    if final == None:
-        final = len(lista)
-        pivote = lista[final - 1]
-        contador = -1
-        for i in range(0, final):
-            if lista[i] <= pivote:
-                contador = contador + 1
-                if contador >= 0:
-                    var = lista[contador]
-                    lista[contador] = lista[i]
-                    lista[i] = var
-        return metodo_sorter_v4(lista[0:contador+1],contador-1)+metodo_sorter_v4(lista[contador+1:],final-contador-2)
-    else:
         return lista
 
 #print(sorter_v1([99, 2, 0, 4, 7, 9]))
